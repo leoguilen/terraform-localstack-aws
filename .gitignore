@@ -1,0 +1,12 @@
+# Ignore terraform state files
+*.tfstate*
+
+# Ignore crash log
+crash.log
+
+# Ignore .terraform directories (can contain sensitive information)
+**/.terraform/*
+
+# Ignore files ending in .tfplan as they are usually used to override resources
+*tfplan
+

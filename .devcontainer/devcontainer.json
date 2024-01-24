@@ -1,0 +1,55 @@
+{
+	"name": "Development Environment",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": { }
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/aws-cli": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/common-utils:2.4.0": {
+			"installZsh": true,
+			"configureZshAsDefaultShell": true,
+			"installOhMyZsh": true,
+			"upgradePackages": true,
+			"username": "vscode",
+			"uid": "1000",
+			"gid": "1000"
+		}
+	},
+
+	"overrideFeatureInstallOrder": [
+		"ghcr.io/devcontainers/features/common-utils"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"vscode-icons-team.vscode-icons",
+				"ms-vscode.makefile-tools",
+				"hashicorp.terraform",
+				"ms-azuretools.vscode-docker"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/usr/bin/zsh",
+				"extensions.ignoreRecommendations": true
+			}
+		}
+	},
+	"onCreateCommand": "/bin/bash ./.devcontainer/on-create.sh > ~/on-create.log",
+	"postStartCommand": "/bin/bash ./.devcontainer/post-start.sh > ~/post-start.log",
+	"remoteEnv": {
+		"AWS_ACCESS_KEY_ID": "<access-key-id>",
+		"AWS_SECRET_ACCESS_KEY": "<secret-access-key>",
+		"AWS_REGION": "<region>"
+	},
+	"remoteUser": "vscode"
+}
